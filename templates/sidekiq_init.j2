@@ -1,0 +1,27 @@
+#!upstart
+description "Upstart Script for a Rails process"
+
+stop on runlevel [06]
+stop on shutdown
+
+respawn
+respawn limit 3 30
+
+normal exit 0 TERM
+
+setuid deploy
+setgid deploy
+
+chdir {{ app_path }}/current/
+
+script
+exec /bin/bash <<EOT
+  exec bundle exec ./bin/sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
+EOT
+end script
+
+pre-stop script
+exec /bin/bash <<EOT
+  exec bundle exec sidekiqctl stop {{ app_path }}/shared/tmp/pids/sidekiq.pid
+EOT
+end script

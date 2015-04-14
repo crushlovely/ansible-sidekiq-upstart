@@ -1,0 +1,4 @@
+app_name: test
+app_path: /home/ubuntu/test
+logrotate:
+  path: "{{ app_path }}/shared/log/*.log"

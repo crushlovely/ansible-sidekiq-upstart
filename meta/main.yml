@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Pablo Castillo
+  company: Crush & Lovely
+  description: Configures logrotate for an application
+  license: MIT
+  min_ansible_version: 1.6
+  platforms:
+    - name: Ubuntu
+      versions:
+        - Precise
+        - Trusty
+  categories:
+    - system
+dependencies: []
+version: 1.0.0
