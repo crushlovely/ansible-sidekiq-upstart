@@ -2,7 +2,7 @@
 galaxy_info:
   author: Pablo Castillo
   company: Crush & Lovely
-  description: Configures logrotate for an application
+  description: Installs Sidekiq globally and copies an upstart script for Sidekiq
   license: MIT
   min_ansible_version: 1.6
   platforms:
@@ -12,5 +12,7 @@ galaxy_info:
         - Trusty
   categories:
     - system
+    - Webserver
+    - Application server
 dependencies: []
 version: 1.0.0

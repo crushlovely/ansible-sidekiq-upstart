@@ -1,14 +1,14 @@
-# Ansible role to install Logrotate
+# Ansible role to install Sidekiq
 
-[![Build Status](https://img.shields.io/circleci/project/crushlovely/ansible-logrotate.svg?style=flat)](https://img.shields.io/circleci/project/crushlovely/ansible-logrotate)
-[![Current Version](http://img.shields.io/github/release/crushlovely/ansible-logrotate.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1180)
+[![Build Status](https://circleci.com/gh/crushlovely/ansible-sidekiq-upstart.svg?style=shield)](https://github.com/crushlovely/ansible-sidekiq-upstart)
+[![Current Version](http://img.shields.io/github/release/crushlovely/ansible-sidekiq-upstart.svg?style=flat)](https://galaxy.ansible.com/list#/users/3804)
 
-This Ansible role installs/updates and configures logrotate
+This Ansible role installs/updates Sidekiq.  It also copies a working Upstart script.
 
 ## Installation
 
 ``` bash
-$ ansible-galaxy install crushlovely.logrotate,v1.0.0
+$ ansible-galaxy install crushlovely.sidekiq-upstart,v1.0.0
 ```
 
 ## Variables
@@ -16,8 +16,9 @@ $ ansible-galaxy install crushlovely.logrotate,v1.0.0
 ``` yaml
 app_name: test
 app_path: /home/ubuntu/test
-logrotate:
-  path: "{{ app_path }}/shared/log/*.log"
+server_env: qa
+app:
+  process_name: "{{ app_name }}"
 ```
 
 ## Usage
@@ -27,7 +28,7 @@ Once this role is installed on your system, include it in the roles list of your
 ``` yaml
 - hosts: localhost
   roles:
-    - crushlovely.logrotate
+    - crushlovely.sidekiq-upstart
 ```
 
 ## Dependencies

@@ -1,4 +1,5 @@
 app_name: test
 app_path: /home/ubuntu/test
-logrotate:
-  path: "{{ app_path }}/shared/log/*.log"
+server_env: qa
+app:
+  process_name: "{{ app_name }}"
