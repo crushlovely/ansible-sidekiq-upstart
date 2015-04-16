@@ -2,6 +2,8 @@
 machine:
   python:
     version: 2.7.9
+  ruby:
+    version: 2.1.0
 dependencies:
   pre:
     - sudo apt-get update -qq
@@ -16,7 +18,7 @@ dependencies:
 test:
   override:
     # Get nginx role
-    - ansible-galaxy install -f https://github.com/crushlovely/ansible-logrotate.git,remotes/origin/$CIRCLE_BRANCH -p ./tests/roles/
+    - ansible-galaxy install -f https://github.com/crushlovely/ansible-sidekiq-upstart.git,remotes/origin/$CIRCLE_BRANCH -p ./tests/roles/
 
     # Check the role/playbook's syntax.
     - ansible-playbook --syntax-check -i tests/inventory tests/test.yml
