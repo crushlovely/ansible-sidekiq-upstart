@@ -3,5 +3,5 @@
   gem: name=sidekiq state=present user_install=no
 
 - name: Copy init template to init.d dir
-  template: src=sidekiq_init.j2 dest=/etc/init/{{ app.process_name }}_worker.conf owner=root group=root force=yes
+  template: src=sidekiq_init.j2 dest=/etc/init/{{ app_process_name }}_worker.conf owner=root group=root force=yes
   sudo: yes

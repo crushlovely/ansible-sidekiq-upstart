@@ -16,7 +16,7 @@ chdir {{ app_path }}/current/
 
 script
 exec /bin/bash <<EOT
-  exec bundle exec ./bin/sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
+  exec bundle exec sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
 EOT
 end script
 
