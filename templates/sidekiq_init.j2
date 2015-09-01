@@ -1,8 +1,8 @@
 #!upstart
 description "Upstart Script for a Rails process"
 
+start on startup
 stop on runlevel [06]
-stop on shutdown
 
 respawn
 respawn limit 3 30
@@ -14,14 +14,11 @@ setgid deploy
 
 chdir {{ app_path }}/current/
 
-script
-exec /bin/bash <<EOT
-  exec bundle exec sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
-EOT
-end script
+reload signal USR1
+kill timeout 15
 
-pre-stop script
-exec /bin/bash <<EOT
-  exec bundle exec sidekiqctl stop {{ app_path }}/shared/tmp/pids/sidekiq.pid
+script
+exec /bin/bash <<'EOT'
+  exec bundle exec sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
 EOT
 end script
